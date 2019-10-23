@@ -7,7 +7,7 @@
 ./install.sh
 
 # Run the tests.
-pytest -v
+pytest -ra -v
 
 # Build the documentation.
 make -C docs html

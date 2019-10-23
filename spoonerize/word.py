@@ -74,10 +74,11 @@ def split_word(word):
     The *body* is the remainder of the word. \
     Words that begin with a vowel have an empty head.
 
-    *y* is treated as a vowel, \
+    ``'y'`` is treated as a vowel, \
     except at the beginning of a word. \
-    In the letter combination *qu<VOWEL>*, \
-    *qu* is treated as a consonant.
+    If the letter combination ``'qu'``, \
+    is followed by a vowel, \
+    the ``'qu'`` is treated as a consonant.
 
     If ``word`` contains multiple words, \
     only the first word is split. \

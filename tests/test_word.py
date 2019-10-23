@@ -4,24 +4,8 @@ import pytest
 
 from spoonerize.word import copy_case_pattern
 from spoonerize.word import split_word
-from spoonerize.word import spoonerize_word_pair
 from spoonerize.word import strip_word
 
-
-def test_spoonerize_word_pair():
-
-    examples = [('dear queen', 'quear deen'),
-                ('loving shepherd', 'shoving lepherd'),
-                ('crushing blow', 'blushing crow'),
-                ('oiled bicycle', 'boiled icycle'),
-                ('cosy nook', 'nosy cook')]
-
-    for case, target in examples:
-        assert spoonerize_word_pair(*case.split()) == tuple(target.split())
-
-def test_spoonerize_word_pair_preserve_case():
-
-    assert spoonerize_word_pair('dear', 'Queen') == ('quear', 'Deen')
 
 def test_strip_word():
 
@@ -31,7 +15,7 @@ def test_strip_word():
     # No surroundings.
     assert strip_word('three') == ('', 'three', '')
 
-def test_srip_word_error():
+def test_strip_word_error():
 
     with pytest.raises(ValueError):
         strip_word(' ... ')
@@ -75,7 +59,7 @@ def test_split_word_error():
 def test_copy_case_pattern():
 
     # Use a test word with a non-standard case pattern.
-    # This ensures that the function will change it.
+    # This ensures that the function should change it.
     word = 'tHREE'
 
     # Lowercase.

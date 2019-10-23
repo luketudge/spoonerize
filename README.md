@@ -1,6 +1,6 @@
 # spoonerize
 
-A Python package for working with [spoonerisms](https://en.wikipedia.org/wiki/Spoonerism). Fust for jun.
+A Python package for working with [spoonerisms](https://en.wikipedia.org/wiki/Spoonerism). For party fun.
 
 * [Aims](#aims)
 * [Alternatives](#alternatives)
@@ -52,4 +52,4 @@ Run the installation and testing script [test_install.sh](tests/test_install.sh)
 ./tests/test_install.sh
 ```
 
-If you make changes to the source code, you can run this script again to build and test your modified version.
+If you make changes to the source code (in the main package directory [spoonerize](spoonerize)), you can run this script again to build and test your modified version.
