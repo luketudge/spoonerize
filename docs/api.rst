@@ -1,6 +1,11 @@
 API
 ===
 
+regexes
+-------
+
+.. automodule:: spoonerize.regexes
+
 word
 ----
 
