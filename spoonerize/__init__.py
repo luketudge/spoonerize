@@ -1,3 +1,6 @@
 # -*- coding: utf-8 -*-
 
-__version__ = '1.0'
+from .word import spoonerize_word_pair
+
+
+__version__ = '0.1'

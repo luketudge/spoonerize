@@ -18,8 +18,9 @@
 # -- Project information -----------------------------------------------------
 
 project = 'spoonerize'
-copyright = '2019, Luke Tudge'
 author = 'Luke Tudge'
+copyright = '2019, Luke Tudge'
+version = '0.1'
 
 
 # -- General configuration ---------------------------------------------------
@@ -28,9 +29,7 @@ author = 'Luke Tudge'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = ['sphinx.ext.autodoc',
-    'sphinx.ext.coverage',
-    'sphinx.ext.viewcode',
-    'sphinx.ext.githubpages']
+              'sphinx.ext.viewcode']
 
 # Add any paths that contain templates here, relative to this directory.
 #templates_path = ['_templates']
@@ -52,12 +51,13 @@ html_theme = 'alabaster'
 # so a file named "default.css" will overwrite the builtin "default.css".
 #html_static_path = ['_static']
 
-# Sidebars for alabaster theme.
+# HTML sidebars (for alabaster theme).
 # https://alabaster.readthedocs.io/en/latest/installation.html#sidebars
 html_sidebars = {
     '**': [
         'about.html',
         'navigation.html',
+        'sourcelink.html',
         'searchbox.html'
     ]
 }
