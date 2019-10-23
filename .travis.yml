@@ -10,9 +10,16 @@ python:
 install:
   - ./install.sh
 
+# Don't waste time cloning previous commits.
+# No git stuff is tested anyway.
 git:
   depth: 1
 
+branches:
+  only:
+  - master
+  - stable
+
 script:
-  - pytest -v
+  - pytest -ra -v
   - make -C docs html

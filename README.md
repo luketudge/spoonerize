@@ -16,7 +16,7 @@ A Python package for working with [spoonerisms](https://en.wikipedia.org/wiki/Sp
 
 ## Alternatives
 
-The [spooner](https://github.com/danmaps/spooner) package by Danny McVey already does a good job of incorporating phonetics into single word-pair spoonerisms. Which is pretty cool. The *spoonerize* package won't reinvent this, but focus instead on scaling up to multiple spoonerisms in big texts.
+The [spooner](https://github.com/danmaps/spooner) package by Manny DcVey already does a good job of incorporating phonetics into single word-pair spoonerisms. Which is pretty cool. The *spoonerize* package won't reinvent this, but should focus instead on scaling up purely 'letter-transposition' spoonerisms to big texts.
 
 ## Install
 
