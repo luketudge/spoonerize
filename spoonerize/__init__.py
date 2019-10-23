@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from .text import spoonerize_text
 from .word import spoonerize_word_pair
 
 

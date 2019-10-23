@@ -11,13 +11,6 @@ import regex
 
 FLAGS = regex.V1 | regex.IGNORECASE
 
-# Word:
-# word boundary
-# followed by one or more word characters
-# followed by word boundary
-WORD = '\\b\\w+\\b'
-WORD = regex.compile(WORD, flags=FLAGS)
-
 # Letter types.
 # 'y' is treated as a vowel here,
 # but an exception is made later for 'y' at word start
@@ -25,8 +18,15 @@ WORD = regex.compile(WORD, flags=FLAGS)
 CONSONANTS = 'bcdfghjklmnpqrstvwxz'
 VOWELS = 'aeéiïouy'
 
+# Word:
+# word boundary
+# followed by one or more letter characters
+# followed by word boundary
+WORD = '\\b[{}{}]+\\b'.format(CONSONANTS, VOWELS)
+WORD = regex.compile(WORD, flags=FLAGS)
+
 # Consonant-vowel (c-v) boundary:
-# consonant or word boundary
-# followed by vowel
-CV_BOUNDARY = '(?<=\\b|[{}])(?=[{}])'.format(CONSONANTS, VOWELS)
+# consonant or string start
+# followed by vowel or string end
+CV_BOUNDARY = '(?<=^|[{}])(?=[{}]|$)'.format(CONSONANTS, VOWELS)
 CV_BOUNDARY = regex.compile(CV_BOUNDARY, flags=FLAGS)

@@ -17,8 +17,9 @@ def test_strip_word():
 
 def test_strip_word_error():
 
-    with pytest.raises(ValueError):
-        strip_word(' ... ')
+    for text in [' ... ', ' ', 'se7en']:
+        with pytest.raises(ValueError):
+            strip_word(text)
 
 def test_split_word():
 
@@ -30,6 +31,9 @@ def test_split_word():
 
     # Starts with vowel.
     assert split_word('icicle') == ('', 'icicle')
+
+    # No vowel.
+    assert split_word('str') == ('str', '')
 
 def test_split_word_y():
 
@@ -50,12 +54,6 @@ def test_split_word_qu():
     # 'q' without 'u'.
     assert split_word('qat') == ('q', 'at')
 
-def test_split_word_error():
-
-    for w in ('str', ' ', ''):
-        with pytest.raises(ValueError):
-            split_word(w)
-
 def test_copy_case_pattern():
 
     # Use a test word with a non-standard case pattern.
@@ -70,19 +68,6 @@ def test_copy_case_pattern():
 
     # Capital.
     assert copy_case_pattern(word, 'Cheers') == 'Three'
-
-def test_copy_case_pattern_whitespace():
-
-    word = ' tHREE '
-
-    # Lowercase.
-    assert copy_case_pattern(word, ' cheers. ') == ' three '
-
-    # Uppercase.
-    assert copy_case_pattern(word, ' CHEERS. ') == ' THREE '
-
-    # Capital.
-    assert copy_case_pattern(word, ' Cheers. ') == ' Three '
 
 def test_copy_case_pattern_edge_cases():
 

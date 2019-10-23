@@ -2,6 +2,8 @@
 """Functions for spoonerizing word pairs.
 """
 
+import functools
+
 from .regexes import CV_BOUNDARY
 from .regexes import VOWELS
 from .regexes import WORD
@@ -26,14 +28,25 @@ def spoonerize_word_pair(word1, word2):
     :rtype: tuple (str, str)
     """
 
+    # Strip from surroundings.
+    left1, word1, right1 = strip_word(word1)
+    left2, word2, right2 = strip_word(word2)
+
+    # Split.
     head1, body1 = split_word(word1)
     head2, body2 = split_word(word2)
 
+    # Spoonerize
     word1_new = head2 + body1
     word2_new = head1 + body2
 
+    # Preserve case pattern.
     word1_new = copy_case_pattern(word1_new, word1)
     word2_new = copy_case_pattern(word2_new, word2)
+
+    # Reunite with surroundings.
+    word1_new = left1 + word1_new + right1
+    word2_new = left2 + word2_new + right2
 
     return word1_new, word2_new
 
@@ -43,17 +56,17 @@ def spoonerize_word_pair(word1, word2):
 def strip_word(text):
     """Separate a word from its surroundings.
 
-    The first word in ``text`` is extracted according to the \
-    'word character' regular expression ``'\\w'``, \
-    and returned along with any non-word characters \
-    to its left and right. \
-    Any additional words in ``text`` are treated as \
-    part of the *right* surroundings of the word.
+    The first word is extracted from ``text`` \
+    according to the 'word character' regular expression \
+    ``'\\w'`` and separated from any other characters \
+    to its left and right.
 
-    :param text: Text containing a word to extract.
+    :param text: Text containing a word.
     :type text: str
-    :return: *left*, *word*, *right*
+    :return: Word and surroundings as \
+    (*left*, *word*, *right*).
     :rtype: tuple (str, str, str)
+    :raises ValueError: If ``text`` does not contain a word.
     """
 
     match = WORD.search(text)
@@ -80,24 +93,15 @@ def split_word(word):
     is followed by a vowel, \
     the ``'qu'`` is treated as a consonant.
 
-    If ``word`` contains multiple words, \
-    only the first word is split. \
-    Remaining words are included in the body.
-
     :param word: Word to split.
     :type word: str
     :return: head and body
     :rtype: tuple (str, str)
-    :raises ValueError: If ``word`` \
-    contains no boundary at which to split.
     """
 
-    components = CV_BOUNDARY.split(word, maxsplit=1)
+    left, word, right = strip_word(word)
 
-    if len(components) == 1:
-        raise ValueError("No c-v boundary found in '{}'.".format(word))
-
-    head, body = components
+    head, body = CV_BOUNDARY.split(word, maxsplit=1)
 
     # Exception: Initial 'y' as consonant.
     if (not head[-1:].isalpha()) and body.lower().startswith('y'):
@@ -110,7 +114,7 @@ def split_word(word):
             head = head + body[0]
             body = body[1:]
 
-    return head, body
+    return left + head, body + right
 
 def copy_case_pattern(word, model):
     """Apply the *case pattern* of one word to another.
@@ -119,7 +123,7 @@ def copy_case_pattern(word, model):
 
     * *lowercase*: The first letter is lowercase.
     * *uppercase*: All letters are uppercase.
-    * *capital*: the first letter is uppercase, \
+    * *capital*: The first letter is uppercase, \
     and at least one other letter is lowercase.
 
     The case pattern detected for ``model`` \
