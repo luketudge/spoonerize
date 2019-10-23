@@ -9,4 +9,4 @@ Import the module::
 
 Spoonerize a word pair::
 
-    sp.spoonerize_word_pair('dear', 'queen')
+    sp.spoonerize_word_pair('party', 'fun')
