@@ -2,8 +2,6 @@
 """Functions for spoonerizing word pairs.
 """
 
-import functools
-
 from .regexes import CV_BOUNDARY
 from .regexes import VOWELS
 from .regexes import WORD
@@ -66,6 +64,8 @@ def strip_word(text):
     in order to deal flexibly with words in context:
 
     * :func:`copy_case_pattern`
+    * :func:`is_spoonerizable_word`
+    * :func:`is_valid_word`
     * :func:`split_word`
     * :func:`spoonerize_word_pair`
 
@@ -86,6 +86,74 @@ def strip_word(text):
     end = match.end()
 
     return text[:start], text[start:end], text[end:]
+
+def is_spoonerizable_word(word, stopwords=()):
+    """Check whether a word is spoonerizable.
+
+    A spoonerizable word:
+
+    * is not in ``stopwords``, ...
+    * contains only letter characters, ...
+    * and contains at least three letters ...
+    * at least one of which is a vowel.
+
+    :param word: Word to check.
+    :type word: str
+    :param stopwords: Words to exclude.
+    :type stopwords: iterable of str
+    :rtype: bool
+    """
+
+    # Non-letter characters.
+    try:
+        word = strip_word(word)[1]
+    except ValueError:
+        return False
+
+    # Too short.
+    if len(word) < 3:
+        return False
+
+    word = word.lower()
+
+    # Too few vowels.
+    if all((v not in word) for v in VOWELS):
+        return False
+
+    # Stopword.
+    if word in stopwords:
+        return False
+
+    return True
+
+def is_valid_word(word, dictionary=None):
+    """Check whether a word is valid.
+
+    A valid word:
+
+    * contains only letter characters ...
+    * and is in ``dictionary``.
+
+    If ``dictionary`` is ``None``, \
+    any word is valid.
+
+    :param word: Word to check.
+    :type word: str
+    :param dictionary: Known words.
+    :type dictionary: iterable of str
+    :rtype: bool
+    """
+
+    # Non-letter characters.
+    try:
+        word = strip_word(word)[1]
+    except ValueError:
+        return False
+
+    if dictionary is None:
+        return True
+
+    return word.lower() in dictionary
 
 def split_word(word):
     """Split a word into head and body.

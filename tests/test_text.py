@@ -1,37 +1,33 @@
 # -*- coding: utf-8 -*-
 
+from spoonerize.text import find_next_sentence_boundary
 from spoonerize.text import find_valid_word_pairs
-from spoonerize.text import is_spoonerizable_word
-from spoonerize.text import is_valid_word
 
+
+#%% find_valid_word_pairs
 
 def test_find_valid_word_pairs():
 
     pass
 
-def test_is_spoonerizable_word():
 
-    # Positive case.
-    assert is_spoonerizable_word('three', stopwords=())
-
-    # Non-letter characters.
-    assert not is_spoonerizable_word('se7en', stopwords=())
-
-    # Too short.
-    assert not is_spoonerizable_word('to', stopwords=())
-
-    # No vowel.
-    assert not is_spoonerizable_word('str', stopwords=())
-
-def test_is_spoonerizable_word_stopwords():
-
-    assert not is_spoonerizable_word('three', stopwords=('three',))
-    assert not is_spoonerizable_word('Three', stopwords=('three',))
+#%% find_next_sentence_boundary
 
 def test_find_next_sentence_boundary():
 
-    pass
+    # Standard case.
+    assert find_next_sentence_boundary('a. b') == 2
 
-def test_is_valid_word():
+    # More than one boundary.
+    assert find_next_sentence_boundary('a. b. c') == 2
 
-    pass
+    # No boundary.
+    assert find_next_sentence_boundary('a b') is None
+
+def test_find_next_sentence_boundary_exceptions():
+
+    # Standard case.
+    assert find_next_sentence_boundary('dr. b') is None
+
+    # Uppercase.
+    assert find_next_sentence_boundary('Dr. b') is None

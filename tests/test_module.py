@@ -4,7 +4,7 @@ from spoonerize import spoonerize_text
 from spoonerize import spoonerize_word_pair
 
 
-#%% Word pairs.
+#%% spoonerize_word_pair
 
 examples = [(('dear', 'queen'), ('quear', 'deen')),
             (('loving', 'shepherd'), ('shoving', 'lepherd')),
@@ -42,7 +42,7 @@ def test_spoonerize_word_pair_preserve_case():
     assert spoonerize_word_pair('Dear', 'QUEEN') == ('Quear', 'DEEN')
 
 
-#%% Text.
+#%% spoonerize_text
 
 def test_spoonerize_text():
 

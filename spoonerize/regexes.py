@@ -19,14 +19,28 @@ QUOTEMARKS = ''''"’”'''
 """'Closing' quote characters.
 """
 
-SENTENCE_BOUNDARY = '(?<=[{}])(?=\\s|[{}]|$)'.format(SENTENCE_STOPS, QUOTEMARKS)
+SENTENCE_BOUNDARY_EXCEPTIONS = ('dr',
+                                'fr',
+                                'mr',
+                                'mrs',
+                                'ms',
+                                'prof')
+"""Exceptions to :data:`SENTENCE_BOUNDARY`.
+"""
+
+SENTENCE_BOUNDARY = '(?<!{})[{}](?=\\s|[{}]|$)'
+SENTENCE_BOUNDARY = SENTENCE_BOUNDARY.format('|'.join(SENTENCE_BOUNDARY_EXCEPTIONS),
+                                             SENTENCE_STOPS,
+                                             QUOTEMARKS)
 SENTENCE_BOUNDARY = regex.compile(SENTENCE_BOUNDARY, flags=FLAGS)
 """Regular expression for sentence boundary.
 
 * Any of :data:`SENTENCE_STOPS` ...
 * followed by any of  :data:`QUOTEMARKS` ...
 * or whitespace ...
-* or string end.
+* or string end, ...
+* except following a word in \
+:data:`SENTENCE_BOUNDARY_EXCEPTIONS`.
 """
 
 CONSONANTS = 'bcdfghjklmnpqrstvwxz'

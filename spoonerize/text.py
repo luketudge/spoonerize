@@ -3,8 +3,11 @@
 """
 
 from .regexes import SENTENCE_BOUNDARY
+from .regexes import SENTENCE_BOUNDARY_EXCEPTIONS
 from .regexes import VOWELS
 from .regexes import WORD
+from .word import is_spoonerizable_word
+from .word import is_valid_word
 from .word import strip_word
 
 
@@ -40,12 +43,12 @@ def find_valid_word_pairs(text, maxdist):
     A valid word pair:
 
     * consists of two *spoonerizable* words \
-    (see :func:`is_spoonerizable_word`) ...
+    (see :func:`.word.is_spoonerizable_word`) ...
     * within ``max_dist`` word positions of each other ...
     * that do not span a sentence boundary \
     (see :data:`.regexes.SENTENCE_BOUNDARY`), ...
     * and whose spoonerization results in two valid words \
-    (see :func:`is_valid_word`).
+    (see :func:`.word.is_valid_word`).
 
     Each of the two words in a valid word pair \
     is returned as a tuple of *(start, end)*, \
@@ -63,46 +66,12 @@ def find_valid_word_pairs(text, maxdist):
 
     pass
 
-def is_spoonerizable_word(word, stopwords):
-    """Check whether a word is spoonerizable.
-
-    A spoonerizable word:
-
-    * is not in ``stopwords`` ...
-    * and contains at least three letters ...
-    * at least one of which is a vowel.
-
-    :param word: Word to check.
-    :type word: str
-    :param stopwords: Words to exclude.
-    :type stopwords: iterable of str
-    :rtype: bool
-    """
-
-    # Non-word characters.
-    try:
-        word = strip_word(word)[1]
-    except ValueError:
-        return False
-
-    # Too short.
-    if len(word) < 3:
-        return False
-
-    # Too few vowels.
-    if all((v not in word) for v in VOWELS):
-        return False
-
-    # Stopword.
-    if word.lower() in stopwords:
-        return False
-
-    return True
-
 def find_next_sentence_boundary(text):
     """Find the position of the next sentence boundary in a text.
 
     See :data:`.regexes.SENTENCE_BOUNDARY`.
+
+    If no boundary is found, return ``None``.
 
     :param text: Text in which to search.
     :type text: str
@@ -110,24 +79,9 @@ def find_next_sentence_boundary(text):
     :rtype: int
     """
 
-def is_valid_word(word, dictionary):
-    """Check whether a word is valid.
+    match = SENTENCE_BOUNDARY.search(text)
 
-    A valid word:
+    if match is None:
+        return None
 
-    * is in ``dictionary`` ...
-    * or differs by one vowel change \
-    from a word in ``dictionary``.
-
-    If ``dictionary`` is ``None``, \
-    any word is valid.
-
-    :param word: Word to check.
-    :type word: str
-    :param dictionary: Known words.
-    :type dictionary: iterable of str
-    :rtype: bool
-    """
-
-    if dictionary is None:
-        return True
+    return match.end()
