@@ -7,14 +7,9 @@ from .regexes import WORD
 from .word import strip_word
 
 
-#%% Constants.
-
-DEFAULT_MAX_DIST = 3
-
-
 #%% Main function.
 
-def spoonerize_text(text, maxdist=DEFAULT_MAX_DIST, stopwords=(), dictionary=None):
+def spoonerize_text(text, maxdist=3, stopwords=(), dictionary=None):
     """Spoonerize all valid word pairs in a text.
 
     All valid word pairs in ``text`` are spoonerized \
@@ -57,7 +52,7 @@ def find_valid_word_pairs(text, maxdist):
     :param text: Text to search.
     :type text: str
     :param maxdist: Maximum permitted distance \
-    between words in a pair.
+    between words.
     :type maxdist: int
     :return: Successive word pairs as *(start, end)* tuples.
     :rtype: iterator
@@ -101,15 +96,17 @@ def is_spoonerizable_word(word, stopwords):
 
     return True
 
-
 def is_valid_word(word, dictionary):
     """Check whether a word is valid.
 
     A valid word:
 
     * is in ``dictionary`` ...
-    * or differs by one letter change \
+    * or differs by one vowel change \
     from a word in ``dictionary``.
+
+    If ``dictionary`` is None, \
+    any word is valid.
 
     :param word: Word to check.
     :type word: str
@@ -118,4 +115,5 @@ def is_valid_word(word, dictionary):
     :rtype: bool
     """
 
-    pass
+    if dictionary is None:
+        return True

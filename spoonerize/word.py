@@ -61,6 +61,13 @@ def strip_word(text):
     ``'\\w'`` and separated from any other characters \
     to its left and right.
 
+    ``strip_word`` is called from the following functions \
+    in order to deal flexibly with words in context:
+
+    * :func:`copy_case_pattern`
+    * :func:`split_word`
+    * :func:`spoonerize_word_pair`
+
     :param text: Text containing a word.
     :type text: str
     :return: Word and surroundings as \
