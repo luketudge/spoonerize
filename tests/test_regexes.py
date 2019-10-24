@@ -1,17 +1,32 @@
 # -*- coding: utf-8 -*-
 
 from spoonerize.regexes import CV_BOUNDARY
+from spoonerize.regexes import SENTENCE_BOUNDARY
 from spoonerize.regexes import WORD
 
 
+def test_sentence_boundary():
+
+    # Period followed by whitespace.
+    assert SENTENCE_BOUNDARY.split('a. b') == ['a.', ' b']
+
+    # Period followed by quotemark.
+    assert SENTENCE_BOUNDARY.split('a." b') == ['a.', '" b']
+
+    # Period followed by string end.
+    assert SENTENCE_BOUNDARY.split('a.') == ['a.', '']
+
+    # No boundary.
+    assert SENTENCE_BOUNDARY.findall('a b') == []
+
 def test_word():
 
-    for text in [' three. ', 'three']:
+    for text in [' three. ', ' three 3 ', 'three']:
         assert WORD.findall(text) == ['three']
 
-def test_word_edge_cases():
+def test_word_nonwords():
 
-    for text in ['se7en', ' ... ', ' ', '']:
+    for text in [' 3 ', ' se7en ', ' ... ', ' ', '']:
         assert WORD.findall(text) == []
 
 def test_cv_boundary():

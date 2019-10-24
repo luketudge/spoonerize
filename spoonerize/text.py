@@ -2,6 +2,7 @@
 """Functions for finding spoonerisms in multi-word texts.
 """
 
+from .regexes import SENTENCE_BOUNDARY
 from .regexes import VOWELS
 from .regexes import WORD
 from .word import strip_word
@@ -40,8 +41,10 @@ def find_valid_word_pairs(text, maxdist):
 
     * consists of two *spoonerizable* words \
     (see :func:`is_spoonerizable_word`) ...
-    * within ```max_dist`` word positions of each other ...
-    * whose spoonerization results in two valid words \
+    * within ``max_dist`` word positions of each other ...
+    * that do not span a sentence boundary \
+    (see :data:`.regexes.SENTENCE_BOUNDARY`), ...
+    * and whose spoonerization results in two valid words \
     (see :func:`is_valid_word`).
 
     Each of the two words in a valid word pair \
@@ -96,6 +99,17 @@ def is_spoonerizable_word(word, stopwords):
 
     return True
 
+def find_next_sentence_boundary(text):
+    """Find the position of the next sentence boundary in a text.
+
+    See :data:`.regexes.SENTENCE_BOUNDARY`.
+
+    :param text: Text in which to search.
+    :type text: str
+    :return: Position of first sentence boundary.
+    :rtype: int
+    """
+
 def is_valid_word(word, dictionary):
     """Check whether a word is valid.
 
@@ -105,7 +119,7 @@ def is_valid_word(word, dictionary):
     * or differs by one vowel change \
     from a word in ``dictionary``.
 
-    If ``dictionary`` is None, \
+    If ``dictionary`` is ``None``, \
     any word is valid.
 
     :param word: Word to check.

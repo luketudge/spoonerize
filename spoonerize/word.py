@@ -57,11 +57,12 @@ def strip_word(text):
     """Separate a word from its surroundings.
 
     The first word is extracted from ``text`` \
-    according to the 'word character' regular expression \
-    ``'\\w'`` and separated from any other characters \
+    using :data:`.regexes.WORD` \
+    and separated from any other characters \
     to its left and right.
 
-    ``strip_word`` is called from the following functions \
+    ``strip_word`` is applied to the string arguments \
+    of the following functions \
     in order to deal flexibly with words in context:
 
     * :func:`copy_case_pattern`
@@ -92,7 +93,8 @@ def split_word(word):
     The *head* of a word is the first consonant cluster \
     up to but not including the first vowel. \
     The *body* is the remainder of the word. \
-    Words that begin with a vowel have an empty head.
+    Words that begin with a vowel have an empty head. \
+    (See :data:`.regexes.CV_BOUNDARY`).
 
     ``'y'`` is treated as a vowel, \
     except at the beginning of a word. \

@@ -5,6 +5,7 @@ regexes
 -------
 
 .. automodule:: spoonerize.regexes
+    :members:
 
 text
 ----
