@@ -46,18 +46,23 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # a list of builtin themes.
 html_theme = 'alabaster'
 
+html_theme_options = {
+    'description': 'Tools for working with spoonerisms.',
+    'fixed_sidebar': True,
+    'github_repo': 'spoonerize',
+    'github_user': 'luketudge'
+}
+
+html_sidebars = {
+    '**': [
+        'about.html',
+        'globaltoc.html',
+        'searchbox.html',
+        'sourcelink.html'
+    ]
+}
+
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 #html_static_path = ['_static']
-
-# HTML sidebars (for alabaster theme).
-# https://alabaster.readthedocs.io/en/latest/installation.html#sidebars
-html_sidebars = {
-    '**': [
-        'about.html',
-        'navigation.html',
-        'sourcelink.html',
-        'searchbox.html'
-    ]
-}
