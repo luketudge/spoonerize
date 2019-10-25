@@ -7,7 +7,7 @@ from spoonerize.text import find_valid_word_pairs
 
 def test_find_valid_word_pairs():
 
-    text = 'Dear queen, a loving shepherd.'
+    text = 'Dear queen, a loving shepherd'
     pairs = list(find_valid_word_pairs(text))
     assert len(pairs) == 2
     assert pairs[0] == ((0, 4, 'Quear'), (5, 10, 'deen'))
@@ -15,11 +15,11 @@ def test_find_valid_word_pairs():
 
 def test_find_valid_word_pairs_maxdist():
 
-    text = 'Dear queen, a loving shepherd.'
+    text = 'Dear queen, a loving shepherd'
     pairs = list(find_valid_word_pairs(text, maxdist=0))
     assert pairs == []
 
-    text = 'Dear queen, a loving shepherd.'
+    text = 'Dear queen, a loving shepherd'
     pairs = list(find_valid_word_pairs(text, maxdist=4,
                                        stopwords=('queen', 'loving')))
     assert len(pairs) == 1
@@ -27,13 +27,13 @@ def test_find_valid_word_pairs_maxdist():
 
 def test_find_valid_word_pairs_stopwords():
 
-    text = 'Dear queen, a loving shepherd.'
+    text = 'Dear queen, a loving shepherd'
     pairs = list(find_valid_word_pairs(text,
                                        stopwords=('loving',)))
     assert len(pairs) == 1
     assert pairs[0] == ((0, 4, 'Quear'), (5, 10, 'deen'))
 
-    text = 'Dear queen, a loving shepherd.'
+    text = 'Dear queen, a loving shepherd'
     pairs = list(find_valid_word_pairs(text, maxdist=2,
                                        stopwords=('dear', 'shepherd')))
     assert len(pairs) == 1
@@ -41,7 +41,7 @@ def test_find_valid_word_pairs_stopwords():
 
 def test_find_valid_word_pairs_dictionary():
 
-    text = 'Dear queen, a loving shepherd.'
+    text = 'Dear queen, a loving shepherd'
     pairs = list(find_valid_word_pairs(text,
                                        dictionary=('quear', 'deen')))
     assert len(pairs) == 1
@@ -49,7 +49,7 @@ def test_find_valid_word_pairs_dictionary():
 
 def test_find_valid_word_pairs_sentence_boundary():
 
-    text = 'Dear queen. A loving shepherd.'
+    text = 'Dear queen. A loving shepherd'
     pairs = list(find_valid_word_pairs(text, maxdist=2,
                                        stopwords=('dear', 'shepherd')))
     assert pairs == []

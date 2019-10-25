@@ -2,6 +2,7 @@ dist: bionic
 
 language: python
 
+# Don't bother with Python 2.
 python:
   - '3.6'
   - '3.7'
@@ -20,6 +21,11 @@ branches:
   - master
   - dev
 
+# Run the tests and build the docs.
 script:
-  - pytest -v --cov=spoonerize --cov-report=xml --cov-report=term-missing
+  - pytest --cov=spoonerize --cov-report=xml --cov-report=term-missing
   - make -C docs html
+
+# Upload test coverage report.
+after_success:
+  - codecov
