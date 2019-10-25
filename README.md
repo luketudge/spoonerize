@@ -1,5 +1,9 @@
 # spoonerize
 
+[![Build Status](https://www.travis-ci.org/luketudge/spoonerize.svg?branch=master)](https://www.travis-ci.org/luketudge/spoonerize)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/luketudge/spoonerize.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/luketudge/spoonerize/alerts/)
+[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/luketudge/spoonerize.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/luketudge/spoonerize/context:python)
+
 A Python package for working with [spoonerisms](https://en.wikipedia.org/wiki/Spoonerism). For party fun.
 
 * [Aims](#aims)
