@@ -17,5 +17,5 @@ setuptools.setup(
     packages=['spoonerize'],
     install_requires=['regex'],
     python_requires='>=3',
-    package_data={'spoonerize': ['data/*']}
+    package_data={'spoonerize': ['data/*.txt', 'README.md']}
 )

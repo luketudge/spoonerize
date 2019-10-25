@@ -82,8 +82,7 @@ def strip_word(text):
     if match is None:
         raise ValueError("No word found in '{}'.".format(text))
 
-    start = match.start()
-    end = match.end()
+    start, end = match.span()
 
     return text[:start], text[start:end], text[end:]
 

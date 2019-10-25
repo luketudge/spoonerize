@@ -18,3 +18,12 @@ word
 
 .. automodule:: spoonerize.word
     :members:
+
+wordlists
+---------
+
+.. autodata:: spoonerize.wordlists.DICTIONARY
+    :annotation:
+
+.. autodata:: spoonerize.wordlists.STOPWORDS
+    :annotation:

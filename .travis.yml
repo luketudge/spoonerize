@@ -18,8 +18,8 @@ git:
 branches:
   only:
   - master
-  - stable
+  - dev
 
 script:
-  - pytest -ra -v
+  - pytest -v --cov-report term-missing --cov=spoonerize tests/
   - make -C docs html

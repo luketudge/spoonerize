@@ -1,3 +1,9 @@
+#### Project-specific ignores ####
+
+
+
+#### General Python ignores ####
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

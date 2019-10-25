@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from spoonerize.text import find_next_sentence_boundary
 from spoonerize.text import find_valid_word_pairs
 
 
@@ -8,26 +7,54 @@ from spoonerize.text import find_valid_word_pairs
 
 def test_find_valid_word_pairs():
 
-    pass
+    text = 'Dear queen, a loving shepherd.'
+    pairs = list(find_valid_word_pairs(text))
+    assert len(pairs) == 2
+    assert pairs[0] == ((0, 4, 'Quear'), (5, 10, 'deen'))
+    assert pairs[1] == ((14, 20, 'shoving'), (21, 29, 'lepherd'))
 
+def test_find_valid_word_pairs_maxdist():
 
-#%% find_next_sentence_boundary
+    text = 'Dear queen, a loving shepherd.'
+    pairs = list(find_valid_word_pairs(text, maxdist=0))
+    assert len(pairs) == 0
 
-def test_find_next_sentence_boundary():
+    text = 'Dear queen, a loving shepherd.'
+    pairs = list(find_valid_word_pairs(text, maxdist=4,
+                                       stopwords=('queen', 'loving')))
+    assert len(pairs) == 1
+    assert pairs[0] == ((0, 4, 'Shear'), (21, 29, 'depherd'))
 
-    # Standard case.
-    assert find_next_sentence_boundary('a. b') == 2
+def test_find_valid_word_pairs_stopwords():
 
-    # More than one boundary.
-    assert find_next_sentence_boundary('a. b. c') == 2
+    text = 'Dear queen, a loving shepherd.'
+    pairs = list(find_valid_word_pairs(text,
+                                       stopwords=('loving',)))
+    assert len(pairs) == 1
+    assert pairs[0] == ((0, 4, 'Quear'), (5, 10, 'deen'))
 
-    # No boundary.
-    assert find_next_sentence_boundary('a b') is None
+    text = 'Dear queen, a loving shepherd.'
+    pairs = list(find_valid_word_pairs(text, maxdist=2,
+                                       stopwords=('dear', 'shepherd')))
+    assert len(pairs) == 1
+    assert pairs[0] == ((5, 10, 'leen'), (14, 20, 'quoving'))
 
-def test_find_next_sentence_boundary_exceptions():
+def test_find_valid_word_pairs_dictionary():
 
-    # Standard case.
-    assert find_next_sentence_boundary('dr. b') is None
+    text = 'Dear queen, a loving shepherd.'
+    pairs = list(find_valid_word_pairs(text,
+                                       dictionary=('quear', 'deen')))
+    assert len(pairs) == 1
+    assert pairs[0] == ((0, 4, 'Quear'), (5, 10, 'deen'))
 
-    # Uppercase.
-    assert find_next_sentence_boundary('Dr. b') is None
+def test_find_valid_word_pairs_sentence_boundary():
+
+    text = 'Dear queen. A loving shepherd.'
+    pairs = list(find_valid_word_pairs(text, maxdist=2,
+                                       stopwords=('dear', 'shepherd')))
+    assert len(pairs) == 0
+
+def test_find_valid_word_pairs_edge_cases():
+
+    for text in [' ... ', ' ', '', 'se7en']:
+        assert list(find_valid_word_pairs(text)) == []

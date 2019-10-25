@@ -6,8 +6,8 @@
 # Install.
 ./install.sh
 
-# Run the tests.
-pytest -ra -v
+# Run the tests and coverage report.
+pytest -v --cov-report term-missing --cov=spoonerize tests/
 
 # Build the documentation.
 make -C docs html
