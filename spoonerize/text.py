@@ -91,6 +91,7 @@ def find_valid_word_pairs(text, maxdist=1, stopwords=(), dictionary=None):
     """
 
     pos = 0
+    text_end = len(text)
 
     while True:
 
@@ -113,7 +114,7 @@ def find_valid_word_pairs(text, maxdist=1, stopwords=(), dictionary=None):
             # Find the next sentence boundary.
             boundary_match = SENTENCE_BOUNDARY.search(text, word_end)
             if boundary_match is None:
-                sentence_end = -1
+                sentence_end = text_end
             else:
                 sentence_end = boundary_match.end()
 

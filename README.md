@@ -1,6 +1,7 @@
 # spoonerize
 
 [![Build Status](https://www.travis-ci.org/luketudge/spoonerize.svg?branch=master)](https://www.travis-ci.org/luketudge/spoonerize)
+[![codecov](https://codecov.io/gh/luketudge/spoonerize/branch/master/graph/badge.svg)](https://codecov.io/gh/luketudge/spoonerize)
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/luketudge/spoonerize.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/luketudge/spoonerize/alerts/)
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/luketudge/spoonerize.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/luketudge/spoonerize/context:python)
 
