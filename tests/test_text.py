@@ -17,7 +17,7 @@ def test_find_valid_word_pairs_maxdist():
 
     text = 'Dear queen, a loving shepherd.'
     pairs = list(find_valid_word_pairs(text, maxdist=0))
-    assert len(pairs) == 0
+    assert pairs == []
 
     text = 'Dear queen, a loving shepherd.'
     pairs = list(find_valid_word_pairs(text, maxdist=4,
@@ -52,7 +52,7 @@ def test_find_valid_word_pairs_sentence_boundary():
     text = 'Dear queen. A loving shepherd.'
     pairs = list(find_valid_word_pairs(text, maxdist=2,
                                        stopwords=('dear', 'shepherd')))
-    assert len(pairs) == 0
+    assert pairs == []
 
 def test_find_valid_word_pairs_edge_cases():
 
