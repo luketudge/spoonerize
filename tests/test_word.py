@@ -4,6 +4,7 @@ import pytest
 
 from spoonerize.word import copy_case_pattern
 from spoonerize.word import is_spoonerizable_word
+from spoonerize.word import is_spoonerizable_word_pair
 from spoonerize.word import is_valid_word
 from spoonerize.word import split_word
 from spoonerize.word import strip_word
@@ -42,6 +43,25 @@ def test_is_spoonerizable_word_stopwords():
 
     for word in ['three', ' three. ', 'THREE']:
         assert not is_spoonerizable_word(word, stopwords=('three',))
+
+
+#%% is_spoonerizable_word_pair
+
+def test_is_spoonerizable_word_pair():
+
+    # Positive cases.
+    assert is_spoonerizable_word_pair('dear', 'queen')
+    assert is_spoonerizable_word_pair('Dear ', 'queen.')
+
+    # Non-letter characters.
+    assert not is_spoonerizable_word_pair('3', 'se7en')
+
+    # Same word.
+    assert not is_spoonerizable_word_pair('Dear ', 'dear.')
+
+    # Same head or body.
+    assert not is_spoonerizable_word_pair('Dear ', 'deen.')
+    assert not is_spoonerizable_word_pair('Dear ', 'quear.')
 
 
 #%% is_valid_word

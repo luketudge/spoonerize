@@ -125,6 +125,32 @@ def is_spoonerizable_word(word, stopwords=()):
 
     return True
 
+def is_spoonerizable_word_pair(word1, word2):
+    """Check whether a word pair is spoonerizable.
+
+    A spoonerizable word pair consists of two words \
+    that do not share either a *head* or a *body* \
+    (see :func:`split_word`).
+
+    :param word1: First word.
+    :type word1: str
+    :param word2: Second word.
+    :type word2: str
+    :rtype: bool
+    """
+
+    # Deal with non-letter characters.
+    try:
+        word1 = strip_word(word1)[1]
+        word2 = strip_word(word2)[1]
+    except ValueError:
+        return False
+
+    head1, body1 = split_word(word1.lower())
+    head2, body2 = split_word(word2.lower())
+
+    return (head1 != head2) and (body1 != body2)
+
 def is_valid_word(word, dictionary=None):
     """Check whether a word is valid.
 
