@@ -5,6 +5,7 @@
 from .regexes import SENTENCE_BOUNDARY
 from .regexes import WORD
 from .word import is_spoonerizable_word
+from .word import is_spoonerizable_word_pair
 from .word import is_valid_word
 from .word import spoonerize_word_pair
 
@@ -67,6 +68,8 @@ def find_valid_word_pairs(text, maxdist=1, stopwords=(), dictionary=None):
     * that do not span a sentence boundary \
     (see :data:`.regexes.SENTENCE_BOUNDARY`) ...
     * or overlap with an existing valid pair, ...
+    * that do not have the same *body* or the same *head* \
+    (see :func:`.word.split_word`), ...
     * and whose spoonerization results in two valid words \
     (see :func:`.word.is_valid_word`).
 
@@ -132,19 +135,21 @@ def find_valid_word_pairs(text, maxdist=1, stopwords=(), dictionary=None):
 
                 if is_spoonerizable_word(partner, stopwords=stopwords):
 
-                    # Spoonerize them.
-                    word_spoon, partner_spoon = spoonerize_word_pair(word, partner)
+                    if is_spoonerizable_word_pair(word, partner):
 
-                    if is_valid_word(word_spoon, dictionary=dictionary) and is_valid_word(partner_spoon, dictionary=dictionary):
+                        # Spoonerize them.
+                        word_spoon, partner_spoon = spoonerize_word_pair(word, partner)
 
-                        # Get the position of the partner word.
-                        partner_start, partner_end = partner_match.span()
+                        if is_valid_word(word_spoon, dictionary=dictionary) and is_valid_word(partner_spoon, dictionary=dictionary):
 
-                        # Return the pair.
-                        word_result = (word_start, word_end, word_spoon)
-                        partner_result = (partner_start, partner_end, partner_spoon)
-                        yield (word_result, partner_result)
+                            # Get the position of the partner word.
+                            partner_start, partner_end = partner_match.span()
 
-                        # Continue the search from the end of the partner word.
-                        pos = partner_end
-                        break
+                            # Return the pair.
+                            word_result = (word_start, word_end, word_spoon)
+                            partner_result = (partner_start, partner_end, partner_spoon)
+                            yield (word_result, partner_result)
+
+                            # Continue the search from the end of the partner word.
+                            pos = partner_end
+                            break

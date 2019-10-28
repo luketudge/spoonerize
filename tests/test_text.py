@@ -54,6 +54,18 @@ def test_find_valid_word_pairs_sentence_boundary():
                                        stopwords=('dear', 'shepherd')))
     assert pairs == []
 
+def test_find_valid_word_pairs_invalid_pairs():
+
+    # Same words.
+    text = 'Dear dear. A loving loving'
+    pairs = list(find_valid_word_pairs(text))
+    assert pairs == []
+
+    # Same head or body.
+    text = 'Dear deen. A loving shoving'
+    pairs = list(find_valid_word_pairs(text))
+    assert pairs == []
+
 def test_find_valid_word_pairs_edge_cases():
 
     for text in [' ... ', ' ', '', 'se7en']:
