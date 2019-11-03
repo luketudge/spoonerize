@@ -13,7 +13,7 @@ DICTIONARY = open(DICTIONARY_FILE, encoding='utf-8').read()
 DICTIONARY = set(DICTIONARY.lower().split())
 """Dictionary of English words.
 
-Source: `Unix words <https://en.wikipedia.org/wiki/Words_(Unix)>`_
+Source: `SCOWL <https://github.com/en-wl/wordlist>`_
 """
 
 STOPWORDS = open(STOPWORDS_FILE, encoding='utf-8').read()
