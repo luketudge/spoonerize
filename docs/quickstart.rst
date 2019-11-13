@@ -9,13 +9,21 @@ Import the module::
 
 Spoonerize a word pair::
 
-    sp.spoonerize_word_pair('party', 'fun')
+    sp.spoonerize_word_pair('crushing', 'blow')
 
-Spoonerize all suitable word pairs in a phrase, excluding custom stopwords::
+Spoonerize all suitable word pairs in a phrase::
 
-    sp.spoonerize_text('Party fun with sleeping bags.', stopwords=('with',))
+    sp.spoonerize_text('A crushing blow.')
 
-Or use the wordlists provided::
+Exclude custom `stop words <https://en.wikipedia.org/wiki/Stop_words>`_::
 
-    stopwords = sp.wordlists.STOPWORDS
-    sp.spoonerize_text('Party fun with sleeping bags.', stopwords=stopwords)
+    sp.spoonerize_text('She dealt him a crushing blow.', stopwords=['she', 'him'])
+
+Exclude words not in a custom dictionary::
+
+    sp.spoonerize_text('She dealt him a crushing blow.', dictionary=['blushing', 'crow'])
+
+Or use the pre-compiled wordlists::
+
+    from spoonerize.wordlists import STOPWORDS, DICTIONARY
+    sp.spoonerize_text('She dealt him a crushing blow.', stopwords=STOPWORDS, dictionary=DICTIONARY)

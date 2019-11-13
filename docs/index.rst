@@ -1,7 +1,7 @@
 spoonerize
 ==========
 
-A Python package for working with `spoonerisms <https://en.wikipedia.org/wiki/Spoonerism>`_. For party fun.
+A Python package for working with `spoonerisms <https://en.wikipedia.org/wiki/Spoonerism>`_. For party funtimes.
 
 Contents
 --------
