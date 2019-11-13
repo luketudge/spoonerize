@@ -11,6 +11,7 @@ def test_dictionary():
     assert 'aardvark' in DICTIONARY
     assert 'zygote' in DICTIONARY
 
+
 def test_dictionary_variants():
 
     # Plurals.

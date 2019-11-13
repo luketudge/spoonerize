@@ -25,6 +25,7 @@ def no_wordlists():
 
     spoonerize_text(text)
 
+
 def with_wordlists():
 
     spoonerize_text(text, stopwords=STOPWORDS, dictionary=DICTIONARY)
@@ -36,6 +37,7 @@ def test_speed_no_wordlists():
 
     t = timeit.timeit('no_wordlists()', number=1, globals=globals())
     assert t < target
+
 
 def test_speed_with_wordlists():
 

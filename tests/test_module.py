@@ -12,14 +12,17 @@ examples = [(('dear', 'queen'), ('quear', 'deen')),
             (('oiled', 'bicycle'), ('boiled', 'icycle')),
             (('cosy', 'nook'), ('nosy', 'cook'))]
 
+
 def test_spoonerize_word_pair():
 
     for pair, target in examples:
         assert spoonerize_word_pair(*pair) == target
 
+
 def test_spoonerize_word_pair_context():
 
     assert spoonerize_word_pair('-dear ', 'queen.') == ('-quear ', 'deen.')
+
 
 def test_spoonerize_word_pair_preserve_case():
 
