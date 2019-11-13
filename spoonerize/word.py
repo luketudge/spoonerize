@@ -86,6 +86,7 @@ def strip_word(text):
 
     return text[:start], text[start:end], text[end:]
 
+
 def is_spoonerizable_word(word, stopwords=()):
     """Check whether a word is spoonerizable.
 
@@ -125,6 +126,7 @@ def is_spoonerizable_word(word, stopwords=()):
 
     return True
 
+
 def is_spoonerizable_word_pair(word1, word2):
     """Check whether a word pair is spoonerizable.
 
@@ -150,6 +152,7 @@ def is_spoonerizable_word_pair(word1, word2):
     head2, body2 = split_word(word2.lower())
 
     return (head1 != head2) and (body1 != body2)
+
 
 def is_valid_word(word, dictionary=None):
     """Check whether a word is valid.
@@ -179,6 +182,7 @@ def is_valid_word(word, dictionary=None):
         return True
 
     return word.lower() in dictionary
+
 
 def split_word(word):
     """Split a word into head and body.
@@ -217,6 +221,7 @@ def split_word(word):
             body = body[1:]
 
     return left + head, body + right
+
 
 def copy_case_pattern(word, model):
     """Apply the *case pattern* of one word to another.

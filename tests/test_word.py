@@ -20,6 +20,7 @@ def test_strip_word():
     # No surroundings.
     assert strip_word('three') == ('', 'three', '')
 
+
 def test_strip_word_error():
 
     for text in [' ... ', ' ', 'se7en']:
@@ -39,6 +40,7 @@ def test_is_spoonerizable_word():
     for word in ['se7en', 'to', 'str']:
         assert not is_spoonerizable_word(word)
 
+
 def test_is_spoonerizable_word_stopwords():
 
     for word in ['three', ' three. ', 'THREE']:
@@ -46,6 +48,7 @@ def test_is_spoonerizable_word_stopwords():
 
 
 #%% is_spoonerizable_word_pair
+
 
 def test_is_spoonerizable_word_pair():
 
@@ -76,6 +79,7 @@ def test_is_valid_word():
     for word in ['3', 'se7en']:
         assert not is_valid_word(word)
 
+
 def test_is_valid_word_dictionary():
 
     for word in ['three', ' three. ', 'THREE']:
@@ -101,6 +105,7 @@ def test_split_word():
     # No vowel.
     assert split_word('str') == ('str', '')
 
+
 def test_split_word_y():
 
     # As vowel.
@@ -108,6 +113,7 @@ def test_split_word_y():
 
     # As consonant.
     assert split_word('your') == ('y', 'our')
+
 
 def test_split_word_qu():
 
@@ -137,6 +143,7 @@ def test_copy_case_pattern():
 
     # Capital.
     assert copy_case_pattern(word, 'Cheers') == 'Three'
+
 
 def test_copy_case_pattern_edge_cases():
 

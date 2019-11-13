@@ -13,6 +13,7 @@ def test_find_valid_word_pairs():
     assert pairs[0] == ((0, 4, 'Quear'), (5, 10, 'deen'))
     assert pairs[1] == ((14, 20, 'shoving'), (21, 29, 'lepherd'))
 
+
 def test_find_valid_word_pairs_maxdist():
 
     text = 'Dear queen, a loving shepherd'
@@ -24,6 +25,7 @@ def test_find_valid_word_pairs_maxdist():
                                        stopwords=('queen', 'loving')))
     assert len(pairs) == 1
     assert pairs[0] == ((0, 4, 'Shear'), (21, 29, 'depherd'))
+
 
 def test_find_valid_word_pairs_stopwords():
 
@@ -39,6 +41,7 @@ def test_find_valid_word_pairs_stopwords():
     assert len(pairs) == 1
     assert pairs[0] == ((5, 10, 'leen'), (14, 20, 'quoving'))
 
+
 def test_find_valid_word_pairs_dictionary():
 
     text = 'Dear queen, a loving shepherd'
@@ -47,12 +50,14 @@ def test_find_valid_word_pairs_dictionary():
     assert len(pairs) == 1
     assert pairs[0] == ((0, 4, 'Quear'), (5, 10, 'deen'))
 
+
 def test_find_valid_word_pairs_sentence_boundary():
 
     text = 'Dear queen. A loving shepherd'
     pairs = list(find_valid_word_pairs(text, maxdist=2,
                                        stopwords=('dear', 'shepherd')))
     assert pairs == []
+
 
 def test_find_valid_word_pairs_invalid_pairs():
 
@@ -65,6 +70,7 @@ def test_find_valid_word_pairs_invalid_pairs():
     text = 'Dear deen. A loving shoving'
     pairs = list(find_valid_word_pairs(text))
     assert pairs == []
+
 
 def test_find_valid_word_pairs_edge_cases():
 
