@@ -6,7 +6,7 @@ import setuptools
 setuptools.setup(
     name='spoonerize',
     version='0.1',
-    description='Search a text for potential spoonerisms.',
+    description='Search a text for spoonerisms.',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     url='https://github.com/luketudge/spoonerize',
