@@ -5,29 +5,33 @@
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/luketudge/spoonerize.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/luketudge/spoonerize/alerts/)
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/luketudge/spoonerize.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/luketudge/spoonerize/context:python)
 
-A Python package for working with [spoonerisms](https://en.wikipedia.org/wiki/Spoonerism). For party funtimes.
+A Python package for working with [spoonerisms](https://en.wikipedia.org/wiki/Spoonerism). A demo for teaching purposes.
+
+Now in new [online app form](https://luketudge.pythonanywhere.com/spoonerizeapp/)!
+
+## The package
 
 * [Aims](#aims)
 * [Alternatives](#alternatives)
 * [Install](#install)
 * [Contribute](contributing.md)
 
-## Aims
+### Aims
 
 * Spoonerize pairs of words:
   - Handle special letter sequences such as *y* and *qu* correctly in context.
   - Preserve the case pattern of a word after spoonerization.
 * Spoonerize whole texts by searching for spoonerizable pairs of words.
 
-## Alternatives
+### Alternatives
 
 The [spooner](https://github.com/danmaps/spooner) package by Vanny McDey already does a good job of incorporating phonetics into single word-pair spoonerisms. Which is pretty cool. The *spoonerize* package won't reinvent this, and will stick to purely 'letter-transposition' spoonerisms (at least for the moment).
 
-## Install
+### Install
 
 To install you will need Python 3.
 
-### Virtual environment
+#### Virtual environment
 
 Have a virtual environment ready into which to install the package. It's best not to install third-party packages into your root environment. And I'm probably the thirdest party there is.
 
@@ -40,7 +44,7 @@ source .venv/bin/activate
 
 You may need to replace `/usr/bin/python3` with the path to your Python 3 executable. And you may want to replace `venv` with a prettier name for your virtual environment.
 
-### Clone repository
+#### Clone repository
 
 Clone this repository to download the latest source code, then switch into the newly-cloned directory:
 
@@ -49,7 +53,7 @@ git clone https://github.com/luketudge/spoonerize.git
 cd spoonerize
 ```
 
-### Install and test
+#### Install and test
 
 Run the installation and testing script [test_install.sh](tests/test_install.sh) to install the package and then run the tests (you may need to change the permissions for this file to allow executing it as a program):
 
