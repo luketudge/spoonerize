@@ -7,8 +7,6 @@
 
 A Python package for working with [spoonerisms](https://en.wikipedia.org/wiki/Spoonerism). A demo for teaching purposes.
 
-Now in new [online app form](https://luketudge.pythonanywhere.com/spoonerizeapp/)!
-
 ## The package
 
 * [Aims](#aims)
