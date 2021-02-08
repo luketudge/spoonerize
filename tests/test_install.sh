@@ -4,7 +4,7 @@
 # where install.sh is located.
 
 # Check code style.
-flake8 --ignore E265,E501 spoonerize tests
+flake8 --ignore E265,E501 spoonerize tests app.py
 
 # Install.
 ./install.sh
